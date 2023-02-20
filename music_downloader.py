@@ -85,7 +85,7 @@ class Spotify(MusicDownloader):
         super().__init__()
         self.out_path = out_path
 
-    def playlist(self, playlist: str, offset = 0):
+    def playlist(self, playlist: str, offset = 1):
         """Objeto para o link da playlist do Spotify.
 
         Args:
@@ -98,6 +98,7 @@ class Spotify(MusicDownloader):
         if "playlist" not in playlist:
             raise ValueError("Playlist inválida")
         
+        offset -= 1
         playlist = playlist[34:].split("?")[0]
         cont = 0
 

@@ -1,7 +1,8 @@
 from django.urls import path
-from downloader.views import index, download
+from downloader.views import index, download, youtube
 
 urlpatterns = [
-    path('', index),
-    path('download/', download, name="download")
-]
+    path('', index, name="index"),
+    path('download/<str:cond>', download, name="download"),
+    path('youtube/', youtube, name="youtube"),
+]   

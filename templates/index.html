@@ -10,17 +10,57 @@
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
 </head>
 <body>
-    <button id="trocar" class="spotifyButton">trocar tema</button>
+    {% if 'youtube' in request.get_full_path %}
+    <form action="{% url 'index' %}">
+        <input class="{{ classe }}Button" type="submit" id="trocar" value="Trocar">
+    </form>
+    {% else %}
+    <form action="{% url 'youtube' %}">
+        <input class="{{ classe }}Button" type="submit" id="trocar" value="Trocar">
+    </form>
+    {% endif %}
     <div class="container">
         <div class="downloader">
-            <img src="{% static 'img/spotify.png' %}" alt="" class="downloader-img spotify">
+            {% with 'img/'|add:classe|add:'.png' as imagem %}
+            <img src="{% static imagem %}" alt="" class="downloader-img {{ classe }}">
+            {% endwith %}
             <span class="downloader-span">Spotify downloader</span>
         </div>
-        <form method="POST" action="{% url 'download' %}" class="form">
+        {% if 'youtube' in request.get_full_path %}
+        {% with True as cond %}
+        <form method="POST" action="{% url 'download' cond %}" class="form">
             {% csrf_token %}
-            {{ form }}
-            <input type="submit" class="spotifyButton" value="Baixar">
+            <div class="offset">
+                {% for field in form.visible_fields %}
+                    {{ field }} <!-- formulário -->
+                {% endfor %}
+            </div>
+            {% for error in form.errors.link %}
+                <div class="alert alert-danger">
+                    {{ error }} <!-- mensagem de erro -->
+                </div>
+            {% endfor %}
+            <input type="submit" class="{{ classe }}Button" value="Baixar">
         </form>
+        {% endwith %}
+        {% else %}
+        {% with False as cond %}
+        <form method="POST" action="{% url 'download' cond %}" class="form">
+            {% csrf_token %}
+            <div class="offset">
+                {% for field in form.visible_fields %}
+                    {{ field }} <!-- formulário -->
+                {% endfor %}
+            </div>
+            {% for error in form.errors.link %}
+                <div class="alert alert-danger">
+                    {{ error }} <!-- mensagem de erro -->
+                </div>
+            {% endfor %}
+            <input type="submit" class="{{ classe }}Button" value="Baixar">
+        </form>
+        {% endwith %}
+        {% endif %}
     </div>
     <script src="{% static 'js/script.js' %}"></script>
 </body>
