@@ -24,7 +24,7 @@
             {% with 'img/'|add:classe|add:'.png' as imagem %}
             <img src="{% static imagem %}" alt="" class="downloader-img {{ classe }}">
             {% endwith %}
-            <span class="downloader-span">Spotify downloader</span>
+            <span class="downloader-span">{{ classe | capfirst }} Downloader</span>
         </div>
         {% if 'youtube' in request.get_full_path %}
         {% with True as cond %}
