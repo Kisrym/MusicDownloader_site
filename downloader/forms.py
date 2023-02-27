@@ -19,7 +19,8 @@ class DownloadForms(forms.Form):
         nome = self.cleaned_data.get("link")
 
         if nome:
-            if "playlist" in nome or "track" in nome:
-                return nome
-            else:
-                raise forms.ValidationError("Link inválido")
+            for item in ["track", "playlist", "watch", "youtu.be"]:
+                if item in nome:
+                    return nome
+                
+            raise forms.ValidationError("Link inválido")

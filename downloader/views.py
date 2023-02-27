@@ -43,7 +43,7 @@ def download(request, cond):
                 elif cond == "True":
                     youtube = Youtube()
 
-                    if "watch" in form["link"].value():
+                    if "watch" in form["link"].value() or "youtu.be" in form["link"].value():
                         youtube.track(form["link"].value())
 
                     elif "playlist" in form["link"].value() and "spotify" not in form["link"].value():
