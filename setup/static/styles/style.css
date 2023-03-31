@@ -68,7 +68,7 @@ html {
 }
 
 .form_input {
-    max-width: 15rem;
+    max-width: 17rem;
     width: 100%;
     padding: .3rem;
 }
@@ -94,12 +94,15 @@ html {
     background-color: var(--cor-3);
 }
 
-.offset {
+.arguments {
     display: flex;
+    justify-content: center;
+    gap: 10%;
 }
 
 .offset_input {
-    width: 50px;
+    width: 15%;
+    height: 90%;
 }
 
 .alert {

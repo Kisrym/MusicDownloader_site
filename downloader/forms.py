@@ -11,10 +11,17 @@ class DownloadForms(forms.Form):
     offset = forms.IntegerField(label = "", required = False, min_value = 1, widget = forms.NumberInput(
         attrs = {
         "class" : "offset_input",
-        "value" : 1
+        "placeholder" : "Ínicio"
         }
     ))
     
+    limit = forms.IntegerField(label = "", required = False, min_value = 1, max_value = 50, widget = forms.NumberInput(
+        attrs = {
+            "class" : "offset_input",
+            "placeholder" : "Fim"
+        }
+    ))
+
     def clean_link(self):
         nome = self.cleaned_data.get("link")
 

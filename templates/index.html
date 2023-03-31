@@ -30,11 +30,14 @@
         {% with True as cond %}
         <form method="POST" action="{% url 'download' cond %}" class="form">
             {% csrf_token %}
-            <div class="offset">
-                {% for field in form.visible_fields %}
-                    {{ field }} <!-- formulário -->
-                {% endfor %}
+            <!-- formulário -->
+            {{ form.link }}
+
+            <div class="arguments">
+                {{ form.offset }}
+                {{ form.limit }}
             </div>
+
             {% for error in form.errors.link %}
                 <div class="alert alert-danger">
                     {{ error }} <!-- mensagem de erro -->
@@ -47,11 +50,14 @@
         {% with False as cond %}
         <form method="POST" action="{% url 'download' cond %}" class="form">
             {% csrf_token %}
-            <div class="offset">
-                {% for field in form.visible_fields %}
-                    {{ field }} <!-- formulário -->
-                {% endfor %}
+            <!-- formulário -->
+            {{ form.link }}
+
+            <div class="arguments">
+                {{ form.offset }}
+                {{ form.limit }}
             </div>
+
             {% for error in form.errors.link %}
                 <div class="alert alert-danger">
                     {{ error }} <!-- mensagem de erro -->
