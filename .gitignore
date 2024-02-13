@@ -174,7 +174,7 @@ cython_debug/
 # End of https://www.toptal.com/developers/gitignore/api/django
 
 # lib 
-musicas/
+musicas
 /img
 /musics.zip
 music_downloader/__pycache__

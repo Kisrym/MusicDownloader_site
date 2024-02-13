@@ -17,6 +17,9 @@ def index(request):
 def download(request, cond):
     form = DownloadForms()
 
+    if os.path.isdir("musicas"):
+        rmtree("musicas") # "limpando" a pasta de músicas
+        
     if request.method == "POST":
         form = DownloadForms(request.POST)
         
@@ -79,8 +82,6 @@ def download(request, cond):
                     with ZipFile('musics.zip', 'w') as zf:
                         for file in os.listdir("musicas"):
                             zf.write("musicas/" + file, "musicas/" + file) # mudando o diretório interno do Zip
-
-                    rmtree("musicas") # "limpando" a pasta de músicas
 
                     return FileResponse(open('musics.zip', 'rb'), as_attachment = True)
                 
